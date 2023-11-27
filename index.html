@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --primaryColor: #0e9948;
+            --secondaryColor: #000000;
+            --borderColor: #404143;
+        }
+
+        /* #e0e4e9 */
+
+        body {
+            padding: 0px;
+            margin: 0px;
+            font-family: 'YahooSans VF', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--secondaryColor) !important;
+        }
+
+        hr {
+            border: 1px solid var(--borderColor) !important;
+        }
+
+        .mobileHeader {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            backdrop-filter: blur(10px);
+            transition: background-color 0.5s ease;
+            position: fixed;
+            top: 0px;
+            /* box-shadow: 0 0 1px 0 rgb(0 0 0/0%), 0 1px 0 0 var(--borderColor); */
+            z-index: 999;
+        }
+
+        .mobileHeader.scrolled {
+            background-color: var(--secondaryColor);
+        }
+
+        .mobileHeader .leftHeader {
+            width: 60px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+
+        .mobileHeader .leftHeader .menuIcon {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobileHeader .centerHeader {
+            flex-grow: 1;
+            /* Takes up the remaining width */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobileHeader .centerHeader .logoImage {
+            width: 70%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobileHeader .centerHeader .logoImage img {
+            width: 150px;
+        }
+
+        .mobileHeader .rightHeader {
+            width: 60px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+        }
+
+        .mobileHeader .rightHeader .searchIcon {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* header ends */
+
+        section {
+            width: 100vw;
+            height: auto;
+        }
+
+        .carouselSec {
+            background-color: var(--secondaryColor);
+        }
+
+        #carouselExampleSlidesOnly {
+            overflow: hidden;
+        }
+
+        .nextContainer {
+            color: var(--secondaryColor);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            /* Add the WebKit prefix */
+            width: 100vw;
+            height: 50px;
+            margin-top: -20px;
+            position: absolute;
+        }
+
+        .topCont {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            margin-top: 15px;
+            padding-top: 25px;
+        }
+
+        .topCont .titleCont {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topCont .titleCont h2 {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .topCont .optionsCont form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topCont .optionsCont form .optionOne {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--borderColor);
+            margin: 5px;
+            height: 100px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            border-radius: 8px;
+            /* background: var(--borderColor); */
+        }
+
+        .topCont .optionsCont form .optionOne label {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .topCont .optionsCont form .optionOne input[type="radio"].radio {
+            display: none;
+            /* hide the default radio button */
+        }
+
+        .topCont .optionsCont form .optionOne .custom-radio {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.19);
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 10px;
+            /* Adjust spacing between radio button and label */
+        }
+
+        .topCont .optionsCont form .optionOne input[type="radio"].radio:checked+.custom-radio {
+            background: #4CAF50;
+            /* change color when radio is checked */
+            /* border-color: #4CAF50; */
+            border: 1px solid #ddd;
+        }
+
+        .submitCont {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submitCont button {
+            width: 98%;
+            border: none;
+            height: 50px;
+            background: var(--primaryColor);
+            font-size: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .secCont {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .secCont p {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .introCont {
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            padding-top: 25px;
+        }
+
+        .introCont .titleCont {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .introCont .titleCont h2 {
+            color: #000;
+            font-weight: bold;
+        }
+
+        .introCont .videoArea {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .introCont .videoArea iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 768 Min Width */
+
+        @media (min-width: 768px) {
+            .starter {
+                display: flex;
+                margin-top: 10px;
+            }
+            .nextContainer {
+                margin-top: 300px;
+            }
+
+            .hoverDiv {
+                position: absolute;
+                min-width: 384px;
+                width: 384px;
+                right: 0px;
+                background: #00000000;
+            }
+
+            .carouselSec {
+                width: 100%;
+                height: 318px;
+            }
+
+            .carouselSec .carousel {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .carouselSec .carousel-inner {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .carouselSec .carousel-item {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .carouselSec .carousel-item .active {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .carouselSec .carousel-item img {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .introCont .titleCont {
+                width: 100%;
+                height: 100px;
+            }
+
+            .introCont .titleCont h2 {
+                font-size: 30px;
+            }
+
+            .introCont .videoArea {
+                height: 340px;
+            }
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <link rel="preload" href="https://s.yimg.com/cv/apiv2/ngy-fonts/YahooSans-VF-Web.woff2" as="font" type="font/woff2"
+        crossorigin="">
+</head>
+
+<body>
+    <header class="mobileHeader">
+        <div class="leftHeader">
+            <div class="menuIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #fff">
+                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="centerHeader">
+            <div class="logoImage">
+                <img src="./thintry.svg" alt="Thintry logo">
+            </div>
+        </div>
+        <div class="rightHeader">
+            <div class="searchIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #fff;">
+                    <path
+                        d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <div style="height: 60px; width: 100%; background-color: var(--secondaryColor);"></div>
+
+    <div class="starter">
+        <section class="carouselSec">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://i.ytimg.com/vi/FFZSgalRSQQ/maxresdefault.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://marketplace.canva.com/EAEqfS4X0Xw/1/0/800w/canva-most-attractive-youtube-thumbnail-WwL5rLjjIuE.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://marketplace.canva.com/EAFW7JwIojo/2/0/1600w/canva-red-colorful-tips-youtube-thumbnail-FxVVsqyawqY.jpg"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="nextContainer"></div>
+
+        <section style="background: var(--secondaryColor);" class="hoverDiv">
+            <div class="topCont">
+                <div class="titleCont">
+                    <h2>Want to become a professional company?</h2>
+                </div>
+                <div class="optionsCont">
+                    <form action="">
+                        <div class="optionOne">
+                            <input type="radio" class="radio" name="companyType" id="startup">
+                            <label for="startup" class="custom-radio"></label>
+                            <label style="margin-top: 5px;" for="startup">I am a startup company builder</label>
+                        </div>
+                        <div class="optionOne">
+                            <input type="radio" class="radio" name="companyType" id="professional">
+                            <label for="professional" class="custom-radio"></label>
+                            <label style="margin-top: 5px;" for="professional">I am a popular company builder</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="submitCont">
+                    <button type="submit">
+                        <b>Guide me</b>&nbsp;
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: rgba(0, 0, 0, 1);">
+                            <path d="m13.061 4.939-2.122 2.122L15.879 12l-4.94 4.939 2.122 2.122L20.121 12z"></path>
+                            <path d="M6.061 19.061 13.121 12l-7.06-7.061-2.122 2.122L8.879 12l-4.94 4.939z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="container d-md-none">
+                <hr class="w-100">
+            </div>
+        </section>
+    </div>
+
+    <section style="background: var(--secondaryColor);">
+        <div class="secCont">
+            <p class="mt-4 mb-4  mt-md-3 pl-2 pr-2  stories__description text-md-center mx-md-auto col-12 col-md-9">
+                In the last 3
+                years we
+                have helped
+                over<br class="d-none d-md-block">
+                <span style="color: var(--primaryColor);">100s of companies</span> from different backgrounds to build
+                their <span style="color: var(--primaryColor);">future</span>.
+            </p>
+        </div>
+        <div class="container d-md-none">
+            <hr class="w-100">
+        </div>
+    </section>
+
+    <section style="background: #fff;">
+        <div class="introCont">
+            <div class="titleCont">
+                <h2 class="col-12 col-md-12  text-md-center font-xl font-weight-heavy">Are you planning to start
+                    building your <span style="color: var(--primaryColor);">future</span> with us?
+                </h2>
+            </div>
+            <div class="videoArea">
+                <iframe src="https://www.youtube-nocookie.com/embed/2wQEBLYrOVI?si=IEmrmj6BiNo7NYSu"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('scroll', function () {
+            var header = document.querySelector('.mobileHeader');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+    </script>
+</body>
+
+</html>
